@@ -1,6 +1,7 @@
 interface AboutProps {
   settings?: {
     phone?: string | null
+    fax?: string | null
     email?: string | null
     address?: string | null
     monday?: string | null
