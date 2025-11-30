@@ -102,7 +102,7 @@ export async function POST(request: Request) {
     // Send email via Resend
     const { data, error } = await resend.emails.send({
       from: 'Titan Eye Care <form@titaneye.care>', // Change to your verified domain
-      to: 'edward.01s2@gmail.com',
+      to: 'office@titaneye.care',
       replyTo: formData.email,
       subject: `New Form Submission from Titan Eye Care`,
       html: `
