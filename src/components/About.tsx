@@ -24,7 +24,7 @@ export default function About({ settings }: AboutProps) {
           <div className="w-full h-64 lg:h-72 xl:h-full">
             <iframe
               title="google-map"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=4800+US+Highway+287,Arlington,TX+76017"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBOsMwAWNNH-Z82vL6l5KeMaUL6b7shy9c&q=4800+US+Highway+287,Arlington,TX+76017"
               width="100%"
               height="100%"
               style={{ border: 0 }}
