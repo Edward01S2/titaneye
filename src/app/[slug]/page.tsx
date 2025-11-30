@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import client from '@/tina/__generated__/client'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
@@ -13,18 +14,35 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const { data } = await client.queries.pages({ relativePath: `${slug}.md` })
   
-  return {
-    title: `${data.pages.title} - Titan Eye Care`,
-    description: data.pages.title,
+  // Ignore common browser requests
+  if (slug.includes('.')) {
+    return {}
+  }
+  
+  try {
+    const { data } = await client.queries.pages({ relativePath: `${slug}.md` })
+    
+    return {
+      title: `${data.pages.title} - Titan Eye Care`,
+      description: data.pages.title,
+    }
+  } catch {
+    return {}
   }
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const { data } = await client.queries.pages({ relativePath: `${slug}.md` })
-  const page = data.pages
+  
+  // Ignore common browser requests (favicon, robots.txt, etc.)
+  if (slug.includes('.') || slug === 'favicon.ico' || slug === 'robots.txt') {
+    notFound()
+  }
+  
+  try {
+    const { data } = await client.queries.pages({ relativePath: `${slug}.md` })
+    const page = data.pages
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -59,5 +77,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </div>
     </main>
   )
+  } catch (error) {
+    console.error('Error loading page:', error)
+    notFound()
+  }
 }
 

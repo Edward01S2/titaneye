@@ -15,6 +15,7 @@ interface FooterProps {
     friday?: string | null
     saturday?: string | null
     sunday?: string | null
+    bookingUrl?: string | null
   } | null
 }
 
@@ -49,14 +50,14 @@ export default function Footer({ settings }: FooterProps) {
         <div className="container mx-auto">
           <div className="flex flex-wrap md:justify-between">
             {/* Logo Section */}
-            <div className="flex flex-col w-full md:w-1/5 md:items-center xl:items-start">
+            <div className="flex flex-col w-full md:w-1/5 md:items-center lg:items-start">
               <button onClick={scrollToTop} className="focus:outline-none">
                 <Image
-                  src="/img/taeye_logo_white.svg"
+                  src="/img/titan_logo_white.svg"
                   alt="Titan Eye Care"
                   width={150}
                   height={60}
-                  className="w-auto h-10 xl:h-16"
+                  className="w-auto h-10 xl:h-20"
                 />
               </button>
               <div className="hidden md:block md:pt-3">
@@ -110,16 +111,18 @@ export default function Footer({ settings }: FooterProps) {
                 <li className="pt-4 pb-3 md:pt-0">
                   <h4 className="text-base font-bold tracking-widest uppercase">Resources</h4>
                 </li>
-                <li className="pb-3">
-                  <a
-                    href="https://www.eyeexamsnow.com/TexasFlow?catalogId=11651&storeId=10851&langId=-1&clearExams=1&storeNumber=0275"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-primary transition"
-                  >
-                    Book Now
-                  </a>
-                </li>
+                {settings?.bookingUrl && (
+                  <li className="pb-3">
+                    <a
+                      href={settings.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-primary transition"
+                    >
+                      Book Now
+                    </a>
+                  </li>
+                )}
                 <li className="pb-3">
                   <a
                     href="/img/paperwork-2019.docx"

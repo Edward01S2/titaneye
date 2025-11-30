@@ -25,11 +25,11 @@ export default async function Home() {
   
   return (
     <>
-      <Navbar />
+      <Navbar bookingUrl={settings?.bookingUrl} />
       <main className="min-h-screen">
-        <Hero hero={page.hero} />
+        <Hero hero={page.hero} bookingUrl={settings?.bookingUrl} />
         <Services services={page.services} />
-        <Appointments appointment={page.appointment} phone={settings?.phone} />
+        <Appointments appointment={page.appointment} phone={settings?.phone} bookingUrl={settings?.bookingUrl} />
         <Insurance insurance={page.insurance} />
         <About settings={settings} />
         <Team doctors={staff.doctors} />

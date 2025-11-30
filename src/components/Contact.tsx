@@ -22,9 +22,11 @@ export default function Contact({ phone = '(817) 516-5084' }: ContactProps) {
     phone: '',
     email: '',
     message: '',
+    honeypot: '', // honeypot field
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [formStartTime] = useState(Date.now()) // Track when form was loaded
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -38,18 +40,25 @@ export default function Contact({ phone = '(817) 516-5084' }: ContactProps) {
     setIsSubmitting(true)
     setSubmitMessage('')
 
+    // Calculate time taken to fill form
+    const timeTaken = (Date.now() - formStartTime) / 1000 // in seconds
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _formTime: timeTaken, // Send time taken
+        }),
       })
 
       if (response.ok) {
         setSubmitMessage('Thank you! We will get back to you soon.')
-        setFormData({ name: '', phone: '', email: '', message: '' })
+        setFormData({ name: '', phone: '', email: '', message: '', honeypot: '' })
       } else {
-        setSubmitMessage('Something went wrong. Please try again or call us directly.')
+        const errorData = await response.json()
+        setSubmitMessage(errorData.error || 'Something went wrong. Please try again or call us directly.')
       }
     } catch (error) {
       setSubmitMessage('Something went wrong. Please try again or call us directly.')
@@ -60,7 +69,7 @@ export default function Contact({ phone = '(817) 516-5084' }: ContactProps) {
 
   return (
     <div id="contact" className="relative">
-      <section className="py-16 bg-gray-50 relative z-10 pb-0 md:pb-8 lg:pb-16">
+      <section className="py-16 bg-gray-50 relative z-10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 md:p-16 border border-gray-200">
           <h2 className="text-center text-3xl font-bold text-primary mb-4 md:text-4xl">
@@ -76,9 +85,18 @@ export default function Contact({ phone = '(817) 516-5084' }: ContactProps) {
           <form
             onSubmit={handleSubmit}
           >
-            <div hidden>
+            {/* Honeypot field - hidden from users */}
+            <div className="absolute -left-[9999px]" aria-hidden="true">
               <label>
-                Don't fill this out: <input name="bot-field" onChange={handleChange} />
+                Leave this field blank
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
               </label>
             </div>
 
@@ -143,6 +161,8 @@ export default function Contact({ phone = '(817) 516-5084' }: ContactProps) {
                 rows={5}
                 value={formData.message}
                 onChange={handleChange}
+                minLength={10}
+                maxLength={1000}
                 required
                 className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-primary"
               />

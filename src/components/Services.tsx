@@ -17,27 +17,23 @@ export default function Services({ services }: ServicesProps) {
 
   return (
     <section id="services" className="-mt-12 text-center md:mx-8 xl:bg-transparent xl:mt-0 relative z-20">
-      <div className="container mx-auto bg-white rounded-lg md:-mt-24 md:shadow-lg md:border md:border-gray-100">
-        <div className="flex px-8 py-8 md:py-8 lg:p-8 xl:px-16 xl:py-10">
-          {/* Services List */}
-          <div className="flex flex-col lg:w-1/2 lg:pr-16">
-            <h2 className="text-3xl font-semibold tracking-widest text-center uppercase md:pb-0 xl:pb-4 xl:text-4xl">
-              Services
-            </h2>
-
+      <div className="container mx-auto px-4">
+        <div className="md:-mt-24">
+          {/* 3 Column Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Service 1 - Eye Checkups */}
-            <div className="py-4 border-b-2 border-gray-200 lg:py-4">
-              <div className="flex items-center content-center mb-4 lg:mb-4">
-                <div className="relative mr-4 flex-shrink-0">
+            <div className="flex flex-col bg-white rounded-lg shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center justify-center mb-4">
+                <div className="relative">
                   <svg
-                    className="w-10 h-10 fill-current text-primary"
+                    className="w-16 h-16 fill-current text-primary"
                     viewBox="0 0 100 100"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <circle cx="50" cy="50" r="50" />
                   </svg>
                   <svg
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white stroke-current"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-white stroke-current"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -50,28 +46,28 @@ export default function Services({ services }: ServicesProps) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-gray-800">
-                  {services.item1}
-                </h3>
               </div>
-              <p className="leading-relaxed text-left text-gray-700 lg:text-sm xl:text-base">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                {services.item1}
+              </h3>
+              <p className="leading-relaxed text-gray-700">
                 {services.text1}
               </p>
             </div>
 
             {/* Service 2 - Contact Fittings */}
-            <div className="py-8 border-b-2 border-gray-200">
-              <div className="flex items-center content-center mb-4">
-                <div className="relative mr-4 flex-shrink-0">
+            <div className="flex flex-col bg-white rounded-lg shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center justify-center mb-4">
+                <div className="relative">
                   <svg
-                    className="w-10 h-10 fill-current text-primary"
+                    className="w-16 h-16 fill-current text-primary"
                     viewBox="0 0 100 100"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <circle cx="50" cy="50" r="50" />
                   </svg>
                   <svg
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white stroke-current"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-white stroke-current"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -90,28 +86,28 @@ export default function Services({ services }: ServicesProps) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-gray-800">
-                  {services.item2}
-                </h3>
               </div>
-              <p className="leading-relaxed text-left text-gray-700 lg:text-sm xl:text-base">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                {services.item2}
+              </h3>
+              <p className="leading-relaxed text-gray-700">
                 {services.text2}
               </p>
             </div>
 
             {/* Service 3 - Other Services */}
-            <div className="py-8">
-              <div className="flex items-center content-center mb-4">
-                <div className="relative mr-4 flex-shrink-0">
+            <div className="flex flex-col bg-white rounded-lg shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center justify-center mb-4">
+                <div className="relative">
                   <svg
-                    className="w-10 h-10 fill-current text-primary"
+                    className="w-16 h-16 fill-current text-primary"
                     viewBox="0 0 100 100"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <circle cx="50" cy="50" r="50" />
                   </svg>
                   <svg
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white stroke-current"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-white stroke-current"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -124,29 +120,15 @@ export default function Services({ services }: ServicesProps) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-gray-800">
-                  {services.item3}
-                </h3>
               </div>
-              <p className="leading-relaxed text-left text-gray-700 lg:text-sm xl:text-base">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                {services.item3}
+              </h3>
+              <p className="leading-relaxed text-gray-700">
                 {services.text3}
               </p>
             </div>
           </div>
-
-          {/* Side Image */}
-          {services.image && (
-            <div className="hidden lg:w-1/2 lg:block">
-              <div className="relative w-full h-full min-h-[400px]">
-                <Image
-                  src={services.image}
-                  alt="Medical services"
-                  fill
-                  className="object-contain rounded"
-                />
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </section>

@@ -49,6 +49,14 @@ export default defineConfig({
                 label: 'Title',
               },
               {
+                type: 'string',
+                name: 'description',
+                label: 'Description',
+                ui: {
+                  component: 'textarea',
+                },
+              },
+              {
                 type: 'image',
                 name: 'image',
                 label: 'Image',
@@ -115,11 +123,6 @@ export default defineConfig({
                 type: 'image',
                 name: 'image',
                 label: 'Icon',
-              },
-              {
-                type: 'string',
-                name: 'book',
-                label: 'Booking Link',
               },
               {
                 type: 'string',
@@ -280,6 +283,11 @@ export default defineConfig({
                 ui: {
                   component: 'textarea',
                 },
+              },
+              {
+                type: 'string',
+                name: 'bookingUrl',
+                label: 'Booking URL',
               },
               {
                 type: 'string',

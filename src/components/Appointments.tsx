@@ -4,17 +4,17 @@ interface AppointmentsProps {
   appointment?: {
     image?: string | null
     patient?: string | null
-    book?: string | null
   } | null
   phone?: string | null
+  bookingUrl?: string | null
 }
 
-export default function Appointments({ appointment, phone }: AppointmentsProps) {
+export default function Appointments({ appointment, phone, bookingUrl }: AppointmentsProps) {
   if (!appointment) return null
 
   return (
-    <section id="appts" className="bg-gray-100">
-      <div className="container mx-auto md:mt-24">
+    <section id="appts" className="bg-white">
+      <div className="container mx-auto md:mt-8">
         <div className="flex flex-col p-8 py-24 md:py-16 md:items-center lg:flex-row">
           <div className="md:w-1/2 md:p-8 md:pt-0">
             {appointment.image && (
@@ -46,12 +46,12 @@ export default function Appointments({ appointment, phone }: AppointmentsProps) 
                 )}{' '}
                 and bring it with you. You can call us at{' '}
                 <a href={`tel:${phone}`} className="text-primary hover:underline">
-                  (817) 468-4461
+                  {phone && formatPhone(phone)}
                 </a>{' '}
                 or book an appointment online below.
               </p>
-              {appointment.book && (
-                <a href={appointment.book} target="_blank" rel="noopener noreferrer">
+              {bookingUrl && (
+                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
                   <button className="px-6 py-4 text-lg font-bold tracking-wider text-white uppercase rounded shadow-lg bg-primary hover:bg-opacity-90">
                     Book Appointment
                   </button>
@@ -63,5 +63,14 @@ export default function Appointments({ appointment, phone }: AppointmentsProps) 
       </div>
     </section>
   )
+}
+
+function formatPhone(num: string) {
+  const cleaned = num.replace(/\D/g, '')
+  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+  if (match) {
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+  }
+  return num
 }
 

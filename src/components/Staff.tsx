@@ -12,7 +12,7 @@ export default function Staff({ staff }: StaffProps) {
   if (!staff) return null
 
   return (
-    <section className="pt-16 pb-8 text-blue-100 bg-primary">
+    <section className="pt-16 pb-8 text-white bg-primary">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center md:content-center md:px-16">
           {staff.filter(member => member !== null).map((member, idx) => (
@@ -27,7 +27,7 @@ export default function Staff({ staff }: StaffProps) {
                   />
                 )}
               </div>
-              <div className="flex-shrink pl-8 text-left">
+              <div className="shrink-0 pl-8 text-left">
                 <h4 className="text-xl font-bold">{member.name}</h4>
                 <p>{member.title}</p>
               </div>

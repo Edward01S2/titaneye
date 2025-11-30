@@ -14,5 +14,6 @@ settings:
   thursday: Closed
   tuesday: '9:30 AM - 5:30 PM'
   wednesday: '9:30 AM - 5:30 PM'
+  bookingUrl: 'https://www.eyeexamsnow.com/TexasFlow?catalogId=11651&storeId=10851&langId=-1&clearExams=1&storeNumber=0275'
 ---
 

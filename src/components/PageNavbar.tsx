@@ -10,7 +10,7 @@ export default function PageNavbar() {
         <div className="flex items-center justify-center h-20">
           <Link href="/" className="flex items-center cursor-pointer">
             <Image
-              src="/img/taeye_logo.svg"
+              src="/img/titan_logo.svg"
               alt="Titan Eye Care"
               width={150}
               height={50}

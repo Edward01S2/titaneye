@@ -3,7 +3,11 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
-export default function Navbar() {
+interface NavbarProps {
+  bookingUrl?: string | null
+}
+
+export default function Navbar({ bookingUrl }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -51,11 +55,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center cursor-pointer">
             <Image
-              src="/img/taeye_logo.svg"
+              src="/img/titan_logo.svg"
               alt="Titan Eye Care"
               width={150}
               height={50}
               priority
+              className="w-auto h-10"
             />
           </button>
           
@@ -85,14 +90,16 @@ export default function Navbar() {
             >
               Contact
             </button>
-            <a 
-              href="https://www.eyeexamsnow.com/TexasFlow?catalogId=11651&storeId=10851&langId=-1&clearExams=1&storeNumber=0275"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary text-white px-4 font-semibold py-2 rounded hover:bg-primary/90 hover:scale-105 hover:shadow-lg transition-all duration-200"
-            >
-              Book Now
-            </a>
+            {bookingUrl && (
+              <a 
+                href={bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-white px-4 font-semibold py-2 rounded hover:bg-primary/90 hover:scale-105 hover:shadow-lg transition-all duration-200"
+              >
+                Book Now
+              </a>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -147,15 +154,17 @@ export default function Navbar() {
               >
                 Contact
               </button>
-              <a 
-                href="https://www.eyeexamsnow.com/TexasFlow?catalogId=11651&storeId=10851&langId=-1&clearExams=1&storeNumber=0275"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-white font-semibold px-4 py-3 rounded hover:bg-primary/90 hover:scale-105 hover:shadow-lg transition-all duration-200 text-center"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Book Now
-              </a>
+              {bookingUrl && (
+                <a 
+                  href={bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-primary text-white font-semibold px-4 py-3 rounded hover:bg-primary/90 hover:scale-105 hover:shadow-lg transition-all duration-200 text-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Book Now
+                </a>
+              )}
             </div>
           </div>
         )}

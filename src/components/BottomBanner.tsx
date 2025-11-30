@@ -15,6 +15,7 @@ export default function BottomBanner({ image }: BottomBannerProps) {
         fill
         className="object-cover"
       />
+      <div className="absolute inset-0 bg-primary/50 z-1" />
     </section>
   )
 }
