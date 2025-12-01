@@ -20,6 +20,7 @@ export default function Hero({ hero, bookingUrl }: HeroProps) {
             src={hero.image}
             alt="Hero background"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />

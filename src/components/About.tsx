@@ -23,11 +23,14 @@ export default function About({ settings }: AboutProps) {
         <div className="z-10 order-1 mx-4 mb-24 md:mx-8 md:shadow-lg md:mb-0 md:px-0 lg:mx-0 lg:px-0 xl:w-1/2">
           <div className="w-full h-64 lg:h-72 xl:h-full">
             <iframe
-              title="google-map"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBOsMwAWNNH-Z82vL6l5KeMaUL6b7shy9c&q=4800+US+Highway+287,Arlington,TX+76017"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3358.726708295616!2d-97.209278!3d32.666715999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e64e850b150df%3A0x8569b754cdf4b8cc!2s4800%20US-287%2C%20Arlington%2C%20TX%2076017!5e0!3m2!1sen!2sus!4v1764614421817!5m2!1sen!2sus"
               width="100%"
               height="100%"
               style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Titan Eye Care Location"
             />
           </div>
         </div>

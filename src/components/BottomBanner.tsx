@@ -13,6 +13,7 @@ export default function BottomBanner({ image }: BottomBannerProps) {
         src={image}
         alt="Bottom banner"
         fill
+        sizes="100vw"
         className="object-cover"
       />
       <div className="absolute inset-0 bg-primary/50 z-1" />

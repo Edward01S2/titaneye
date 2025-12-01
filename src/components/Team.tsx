@@ -28,6 +28,7 @@ export default function Team({ doctors }: TeamProps) {
                   src={doc.image}
                   alt={doc.name || ''}
                   fill
+                  sizes="256px"
                   className="object-cover"
                 />
               )}

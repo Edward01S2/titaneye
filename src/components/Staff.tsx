@@ -23,6 +23,7 @@ export default function Staff({ staff }: StaffProps) {
                     src={member.image}
                     alt={member.name || ''}
                     fill
+                    sizes="96px"
                     className="object-cover"
                   />
                 )}
