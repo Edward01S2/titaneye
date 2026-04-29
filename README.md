@@ -41,12 +41,12 @@ npm run dev
 Access the Tina CMS admin interface at:
 
 - Local: [http://localhost:3000/admin](http://localhost:3000/admin)
-- Production: [https://yourdomain.com/admin](https://yourdomain.com/admin)
+- Production: [https://www.titaneye.care/admin](https://www.titaneye.care/admin)
 
 ## Project Structure
 
 ```
-taeye/
+titan-eye-care/
 ├── src/
 │   ├── app/              # Next.js App Router
 │   │   ├── api/         # API routes
@@ -85,4 +85,4 @@ The contact form uses Resend for email notifications. Get your API key at [resen
 
 ## License
 
-© 2024 Titan Eye Care. All rights reserved.
+© 2026 Titan Eye Care. All rights reserved.

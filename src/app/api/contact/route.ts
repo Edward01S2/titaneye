@@ -36,9 +36,26 @@ function validateContent(text: string): boolean {
   return true
 }
 
+function asString(value: unknown) {
+  return typeof value === 'string' ? value.trim() : ''
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 export async function POST(request: Request) {
   try {
     const formData = await request.json()
+    const name = asString(formData.name)
+    const email = asString(formData.email)
+    const phone = asString(formData.phone)
+    const message = asString(formData.message)
     
     // 1. Check honeypot field
     if (formData.honeypot && formData.honeypot.length > 0) {
@@ -59,15 +76,22 @@ export async function POST(request: Request) {
     }
     
     // 3. Validate required fields
-    if (!formData.name || !formData.email || !formData.message || !formData.phone) {
+    if (!name || !email || !message) {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: 'Name, email, and message are required' },
+        { status: 400 }
+      )
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return NextResponse.json(
+        { error: 'Please enter a valid email address' },
         { status: 400 }
       )
     }
     
     // 4. Check message length
-    if (formData.message.length < 10 || formData.message.length > 1000) {
+    if (message.length < 10 || message.length > 1000) {
       return NextResponse.json(
         { error: 'Message must be between 10 and 1000 characters' },
         { status: 400 }
@@ -75,7 +99,7 @@ export async function POST(request: Request) {
     }
     
     // 5. Validate content for spam
-    if (!validateContent(formData.message)) {
+    if (!validateContent(message)) {
       console.log('Spam detected: suspicious content')
       return NextResponse.json(
         { error: 'Your message contains suspicious content' },
@@ -97,25 +121,25 @@ export async function POST(request: Request) {
     }
     
     // Log the submission (you can see this in Vercel logs)
-    console.log('Contact form submission:', { name: formData.name, email: formData.email })
+    console.log('Contact form submission:', { name, email })
     
     // Send email via Resend
     const { data, error } = await resend.emails.send({
-      from: 'Titan Eye Care <form@titaneye.care>', // Change to your verified domain
+      from: 'Titan Eye Care <form@titaneye.care>',
       to: 'office@titaneye.care',
-      replyTo: formData.email,
-      subject: `New Form Submission from Titan Eye Care`,
+      replyTo: email,
+      subject: 'New Form Submission from Titan Eye Care',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #04B0C6;">New Contact Form Submission</h2>
+          <h2 style="color: #1F6FEB;">New Contact Form Submission</h2>
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${formData.name}</p>
-            <p><strong>Phone:</strong> ${formData.phone}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+            <p><strong>Phone:</strong> ${phone ? escapeHtml(phone) : 'Not provided'}</p>
+            <p><strong>Email:</strong> ${escapeHtml(email)}</p>
           </div>
           <div style="margin: 20px 0;">
             <p><strong>Message:</strong></p>
-            <p style="white-space: pre-wrap;">${formData.message}</p>
+            <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
           </div>
           <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
           <p style="color: #666; font-size: 12px;">

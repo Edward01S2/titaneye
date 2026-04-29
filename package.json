@@ -1,12 +1,12 @@
 {
-  "name": "taeye-nextjs",
+  "name": "titan-eye-care-nextjs",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
     "build": "tinacms build && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -24,6 +24,7 @@
     "@types/react-dom": "^18.3.1",
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.0.3",
+    "fontkit": "^2.0.4",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.6.3"

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F4F7FB"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.2" r="0.6">
+      <stop offset="0" stop-color="#E7F0FE" stop-opacity="1"/>
+      <stop offset="1" stop-color="#E7F0FE" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#1F6FEB" fill-opacity=".18"/>
+    </pattern>
+  </defs>
+
+  <!-- background layers -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- decorative dot field, top-right -->
+  <rect x="780" y="60" width="380" height="180" fill="url(#dots)" opacity=".9"/>
+
+  <!-- decorative outline rings, bottom-right (echoes the logo iris) -->
+  <g transform="translate(990 470)" opacity=".55">
+    <circle r="180" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-opacity=".25"/>
+    <circle r="120" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-opacity=".35"/>
+    <circle r="60"  fill="none" stroke="#1F6FEB" stroke-width="2"   stroke-opacity=".55"/>
+    <circle r="22"  fill="#1F6FEB" fill-opacity=".18"/>
+  </g>
+
+  <!-- top-left brand row -->
+  
+  <g transform="translate(72 50) scale(1.28125)">
+    <circle cx="32.00" cy="14.00" r="4.5" fill="#1A2538"/>
+    <circle cx="44.73" cy="19.27" r="4.5" fill="#1F6FEB"/>
+    <circle cx="50.00" cy="32.00" r="4.5" fill="#1A2538"/>
+    <circle cx="44.73" cy="44.73" r="4.5" fill="#1F6FEB"/>
+    <circle cx="32.00" cy="50.00" r="4.5" fill="#1A2538"/>
+    <circle cx="19.27" cy="44.73" r="4.5" fill="#1F6FEB"/>
+    <circle cx="14.00" cy="32.00" r="4.5" fill="#1A2538"/>
+    <circle cx="19.27" cy="19.27" r="4.5" fill="#1F6FEB"/>
+    <circle cx="32" cy="32" r="8" fill="#1F6FEB" stroke="#1A2538" stroke-width="0.9"/>
+    <circle cx="32" cy="32" r="4" fill="#1A2538"/>
+    <circle cx="34.80" cy="29.60" r="1.44" fill="white"/>
+  </g>
+  <path d="M227 0L227 607L391 607L391 0ZM22 587L22 730L597 730L597 587Z" fill="#1A2538" transform="translate(164.00 96.00) scale(0.03800 -0.03800)"/>
+  <path d="M99 0L99 548L259 548L259 0ZM26 430L26 548L259 548L259 430ZM161 602Q116 602 94.5 625.5Q73 649 73 685Q73 722 94.5 745.5Q116 769 161 769Q206 769 227.5 745.5Q249 722 249 685Q249 649 227.5 625.5Q206 602 161 602Z" fill="#1A2538" transform="translate(185.03 96.00) scale(0.03800 -0.03800)"/>
+  <path d="M322 -7Q239 -7 188 13.5Q137 34 113.5 82.5Q90 131 90 214L90 696L239 696L239 208Q239 169 259.5 148.5Q280 128 318 128L399 128L399 -7ZM7 431L7 548L399 548L399 431Z" fill="#1A2538" transform="translate(196.52 96.00) scale(0.03800 -0.03800)"/>
+  <path d="M404 0L404 162L377 162L377 338Q377 380 357 401Q337 422 293 422Q271 422 235 421Q199 420 161 418Q123 416 92 414L92 549Q115 551 146 553Q177 555 210 556Q243 557 272 557Q356 557 413.5 533Q471 509 501 460.5Q531 412 531 336L531 0ZM229 -14Q170 -14 125.5 7Q81 28 56 67.5Q31 107 31 162Q31 222 62 260.5Q93 299 149 317.5Q205 336 278 336L395 336L395 247L277 247Q235 247 212.5 226.5Q190 206 190 171Q190 138 212.5 117.5Q235 97 277 97Q304 97 325.5 106.5Q347 116 361 139Q375 162 377 203L415 163Q410 106 387.5 67Q365 28 325.5 7Q286 -14 229 -14Z" fill="#1A2538" transform="translate(211.74 96.00) scale(0.03800 -0.03800)"/>
+  <path d="M73 0L73 548L200 548L200 313L191 313Q191 397 212.5 453Q234 509 278 537Q322 565 385 565L392 565Q488 565 538.5 502.5Q589 440 589 313L589 0L429 0L429 322Q429 366 403 394Q377 422 333 422Q288 422 260.5 393.5Q233 365 233 319L233 0Z" fill="#1A2538" transform="translate(233.11 96.00) scale(0.03800 -0.03800)"/>
+  <path d="" fill="#1A2538" transform="translate(256.69 96.00) scale(0.03800 -0.03800)"/>
+  <path d="M82 0L82 730L242 730L242 0ZM222 0L222 136L541 136L541 0ZM222 303L222 439L518 439L518 303ZM222 594L222 730L534 730L534 594Z" fill="#1F6FEB" transform="translate(263.47 96.00) scale(0.03800 -0.03800)"/>
+  <path d="M67 -217L67 -81L181 -81Q207 -81 225 -74.5Q243 -68 254 -53Q265 -38 272 -12L407 548L559 548L406 -44Q390 -108 361.5 -146Q333 -184 285.5 -200.5Q238 -217 165 -217ZM239 12L239 137L355 137L355 12ZM173 12L5 548L166 548L325 12Z" fill="#1F6FEB" transform="translate(284.65 96.00) scale(0.03800 -0.03800)"/>
+  <path d="M324 -19Q254 -19 200.5 5Q147 29 111.5 69.5Q76 110 57.5 160.5Q39 211 39 264L39 284Q39 339 57.5 389.5Q76 440 111 480Q146 520 198.5 543.5Q251 567 318 567Q406 567 466.5 527.5Q527 488 559 424.5Q591 361 591 286L591 232L106 232L106 323L494 323L442 281Q442 330 428 365Q414 400 386.5 418.5Q359 437 318 437Q276 437 247 418Q218 399 203 362.5Q188 326 188 273Q188 224 202 187.5Q216 151 246 131Q276 111 324 111Q368 111 396 128Q424 145 434 170L581 170Q569 115 534 72Q499 29 446 5Q393 -19 324 -19Z" fill="#1F6FEB" transform="translate(304.61 96.00) scale(0.03800 -0.03800)"/>
+  <text x="164" y="126" font-family="Inter, system-ui, sans-serif"
+        font-size="14" font-weight="700" fill="#455062" letter-spacing="2.4">EYE CARE · ARLINGTON, TX</text>
+
+  <!-- main headline -->
+  <text x="72" y="270" font-family="Inter, system-ui, sans-serif"
+        font-size="76" font-weight="800" fill="#1A2538" letter-spacing="-2">Friendly eye care</text>
+  <text x="72" y="354" font-family="Inter, system-ui, sans-serif"
+        font-size="76" font-weight="800" fill="#1A2538" letter-spacing="-2">for the
+    <tspan fill="#1F6FEB"> whole family.</tspan>
+  </text>
+
+  <!-- service pills -->
+  
+  <g transform="translate(72 430)">
+    <rect x="0" y="0" width="280" height="64" rx="32" ry="32"
+          fill="white" stroke="#E7F0FE" stroke-width="1.5"/>
+    <g transform="translate(28 18) scale(1.1666666666666667)" color="#1F6FEB">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></g>
+    <text x="72" y="39" font-family="Inter, system-ui, sans-serif"
+          font-size="22" font-weight="600" fill="#1A2538">Eye exams</text>
+  </g>
+  
+  <g transform="translate(372 430)">
+    <rect x="0" y="0" width="270" height="64" rx="32" ry="32"
+          fill="white" stroke="#E7F0FE" stroke-width="1.5"/>
+    <g transform="translate(28 18) scale(1.1666666666666667)" color="#1F6FEB">
+    <circle cx="6" cy="14" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="18" cy="14" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M10 14h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M2 11l3-5h2M22 11l-3-5h-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="72" y="39" font-family="Inter, system-ui, sans-serif"
+          font-size="22" font-weight="600" fill="#1A2538">Glasses</text>
+  </g>
+  
+  <g transform="translate(662 430)">
+    <rect x="0" y="0" width="270" height="64" rx="32" ry="32"
+          fill="white" stroke="#E7F0FE" stroke-width="1.5"/>
+    <g transform="translate(28 18) scale(1.1666666666666667)" color="#1F6FEB">
+    <ellipse cx="12" cy="12" rx="9" ry="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <ellipse cx="12" cy="12" rx="4.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/></g>
+    <text x="72" y="39" font-family="Inter, system-ui, sans-serif"
+          font-size="22" font-weight="600" fill="#1A2538">Contact lenses</text>
+  </g>
+
+  <!-- location chip -->
+  <g transform="translate(72 532)">
+    <rect width="430" height="44" rx="22" fill="#1A2538"/>
+    <g transform="translate(16 10) scale(1)" color="#FFC220">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    <circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></g>
+    <text x="50" y="29" font-family="Inter, system-ui, sans-serif"
+          font-size="16" font-weight="500" fill="white">Inside Walmart Supercenter · 4800 US Hwy 287</text>
+  </g>
+
+  <!-- accent stripe along the bottom -->
+  <rect x="0" y="624" width="1200" height="6" fill="#1F6FEB"/>
+</svg>

@@ -27,7 +27,7 @@ We use the information we collect to:
 - Communicate with you about your care and our services
 - Process insurance claims and billing
 - Comply with legal obligations and regulations
-- Send you appointment reminders and health-related information
+- Send you appointment reminders and information related to your health
 
 ## HIPAA Compliance
 
@@ -76,4 +76,4 @@ If you have any questions about this Privacy Policy or our privacy practices, pl
 
 Phone: (817) 516-5084
 
-Email: office@taeyecare.com
+Email: office@titaneye.care

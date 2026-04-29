@@ -3,29 +3,43 @@ import { notFound } from 'next/navigation'
 import client from '@/tina/__generated__/client'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
+const PAGE_DESCRIPTIONS: Record<string, string> = {
+  privacy: 'Read the Titan Eye Care privacy policy for website visitors and patients in Arlington, TX.',
+}
+
+const RESERVED_SLUGS = new Set(['404', 'favicon.ico', 'robots.txt', 'sitemap.xml'])
+const isReservedSlug = (slug: string) => slug.includes('.') || RESERVED_SLUGS.has(slug)
+
 export async function generateStaticParams() {
   const { data } = await client.queries.pagesConnection()
   const pages = data.pagesConnection.edges || []
-  
-  return pages.map((page) => ({
-    slug: page?.node?._sys.filename,
-  }))
+  return pages.map((page) => ({ slug: page?.node?._sys.filename }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  
-  // Ignore common browser requests
-  if (slug.includes('.')) {
-    return {}
-  }
-  
+  if (isReservedSlug(slug)) return {}
   try {
     const { data } = await client.queries.pages({ relativePath: `${slug}.md` })
-    
+    const title = `${data.pages.title} - Titan Eye Care`
+    const description = PAGE_DESCRIPTIONS[slug] || `Read ${data.pages.title} from Titan Eye Care.`
     return {
-      title: `${data.pages.title} - Titan Eye Care`,
-      description: data.pages.title,
+      title,
+      description,
+      alternates: {
+        canonical: `/${slug}`,
+      },
+      openGraph: {
+        title,
+        description,
+        url: `/${slug}`,
+        images: ['/og-image.png'],
+      },
+      twitter: {
+        title,
+        description,
+        images: ['/og-image.png'],
+      },
     }
   } catch {
     return {}
@@ -34,52 +48,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  
-  // Ignore common browser requests (favicon, robots.txt, etc.)
-  if (slug.includes('.') || slug === 'favicon.ico' || slug === 'robots.txt') {
-    notFound()
-  }
-  
+  if (isReservedSlug(slug)) notFound()
+
   try {
     const { data } = await client.queries.pages({ relativePath: `${slug}.md` })
     const page = data.pages
-
-  return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 md:p-16">
-          <Link
-            href="/"
-            className="inline-flex items-center text-primary hover:underline mb-8"
-          >
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+    return (
+      <main className="min-h-screen bg-bg2">
+        <div className="max-w-[900px] mx-auto px-6 py-16">
+          <div className="bg-white rounded-cardLg border border-line p-8 md:p-14">
+            <Link
+              href="/"
+              className="inline-flex items-center text-accent hover:underline mb-6 text-sm font-semibold"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Back to Home
-          </Link>
-
-          <h1 className="text-4xl font-bold text-primary mb-8">{page.title}</h1>
-          
-          <div className="prose prose-gray max-w-none prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:font-semibold prose-h2:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-strong:text-gray-900">
-            <TinaMarkdown content={page.body} />
+              ← Back to Home
+            </Link>
+            <h1 className="text-4xl font-bold tracking-tight mb-8">{page.title}</h1>
+            <div className="prose prose-gray max-w-none">
+              <TinaMarkdown content={page.body} />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-  )
-  } catch (error) {
-    console.error('Error loading page:', error)
+      </main>
+    )
+  } catch {
     notFound()
   }
 }
-

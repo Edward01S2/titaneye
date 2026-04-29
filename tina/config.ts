@@ -1,7 +1,23 @@
 import { defineConfig } from 'tinacms'
 
-// Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main'
+
+const ICON_OPTIONS = [
+  { value: 'eye', label: 'Eye' },
+  { value: 'contact', label: 'Contact lens' },
+  { value: 'drop', label: 'Drop' },
+  { value: 'shield', label: 'Shield' },
+  { value: 'baby', label: 'Child' },
+  { value: 'plus', label: 'Plus' },
+  { value: 'clock', label: 'Clock' },
+  { value: 'family', label: 'Family' },
+  { value: 'card', label: 'Card' },
+  { value: 'star', label: 'Star' },
+  { value: 'phone', label: 'Phone' },
+  { value: 'pin', label: 'Pin' },
+  { value: 'mail', label: 'Mail' },
+  { value: 'calendar', label: 'Calendar' },
+]
 
 export default defineConfig({
   branch,
@@ -25,10 +41,7 @@ export default defineConfig({
         path: 'content/home',
         format: 'md',
         ui: {
-          allowedActions: {
-            create: false,
-            delete: false,
-          },
+          allowedActions: { create: false, delete: false },
         },
         fields: [
           {
@@ -40,114 +53,203 @@ export default defineConfig({
           },
           {
             type: 'object',
+            name: 'announcement',
+            label: 'Announcement Bar',
+            fields: [
+              { type: 'boolean', name: 'enabled', label: 'Show announcement' },
+              { type: 'string', name: 'badge', label: 'Badge symbol', description: 'Small leading symbol, e.g. ★' },
+              { type: 'string', name: 'left', label: 'Left text' },
+              { type: 'string', name: 'middle', label: 'Middle text' },
+              { type: 'string', name: 'callPhone', label: 'Call link text' },
+            ],
+          },
+          {
+            type: 'object',
             name: 'hero',
             label: 'Hero Section',
             fields: [
-              {
-                type: 'string',
-                name: 'title',
-                label: 'Title',
-              },
+              { type: 'string', name: 'locationCallout', label: 'Location callout (plain text)' },
+              { type: 'string', name: 'locationCalloutEmphasis', label: 'Location callout (emphasized text)' },
+              { type: 'string', name: 'title', label: 'Title' },
+              { type: 'string', name: 'titleHighlight', label: 'Title highlight' },
               {
                 type: 'string',
                 name: 'description',
                 label: 'Description',
-                ui: {
-                  component: 'textarea',
-                },
+                ui: { component: 'textarea' },
+              },
+              { type: 'string', name: 'primaryCta', label: 'Primary CTA label' },
+              { type: 'string', name: 'secondaryCta', label: 'Secondary CTA label' },
+              { type: 'image', name: 'image', label: 'Hero image' },
+              { type: 'string', name: 'cardOpenLabel', label: 'Card · Open status label' },
+              { type: 'string', name: 'cardClosedLabel', label: 'Card · Closed status label' },
+              { type: 'string', name: 'cardNextAvailable', label: 'Card · Next available' },
+              { type: 'string', name: 'cardWalkIns', label: 'Card · Walk-ins' },
+            ],
+          },
+          {
+            type: 'object',
+            name: 'valueProps',
+            label: 'Value Props Strip',
+            list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || 'Value prop' }),
+            },
+            fields: [
+              { type: 'string', name: 'icon', label: 'Icon', options: ICON_OPTIONS },
+              { type: 'string', name: 'title', label: 'Title' },
+              { type: 'string', name: 'sub', label: 'Subtext' },
+            ],
+          },
+          {
+            type: 'object',
+            name: 'servicesSection',
+            label: 'Services Section',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+              { type: 'string', name: 'title', label: 'Section title' },
+              {
+                type: 'string',
+                name: 'description',
+                label: 'Section description',
+                ui: { component: 'textarea' },
               },
               {
-                type: 'image',
-                name: 'image',
-                label: 'Image',
+                type: 'object',
+                name: 'items',
+                label: 'Services',
+                list: true,
+                ui: { itemProps: (item) => ({ label: item?.title || 'Service' }) },
+                fields: [
+                  { type: 'string', name: 'icon', label: 'Icon', options: ICON_OPTIONS },
+                  { type: 'string', name: 'title', label: 'Title' },
+                  { type: 'string', name: 'description', label: 'Description', ui: { component: 'textarea' } },
+                ],
               },
             ],
           },
           {
             type: 'object',
-            name: 'services',
-            label: 'Services',
+            name: 'about',
+            label: 'About Section',
             fields: [
-              {
-                type: 'image',
-                name: 'image',
-                label: 'Icon',
-              },
+              { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+              { type: 'string', name: 'title', label: 'Title' },
+              { type: 'image', name: 'image', label: 'Image' },
               {
                 type: 'string',
-                name: 'item1',
-                label: 'Service 1 Title',
-              },
-              {
-                type: 'string',
-                name: 'text1',
-                label: 'Service 1 Description',
-                ui: {
-                  component: 'textarea',
-                },
-              },
-              {
-                type: 'string',
-                name: 'item2',
-                label: 'Service 2 Title',
-              },
-              {
-                type: 'string',
-                name: 'text2',
-                label: 'Service 2 Description',
-                ui: {
-                  component: 'textarea',
-                },
-              },
-              {
-                type: 'string',
-                name: 'item3',
-                label: 'Service 3 Title',
-              },
-              {
-                type: 'string',
-                name: 'text3',
-                label: 'Service 3 Description',
-                ui: {
-                  component: 'textarea',
-                },
+                name: 'paragraphs',
+                label: 'Paragraphs',
+                list: true,
+                ui: { component: 'textarea' },
               },
             ],
           },
           {
             type: 'object',
-            name: 'appointment',
-            label: 'Appointment Section',
+            name: 'hoursSection',
+            label: 'Hours & Location Section',
             fields: [
-              {
-                type: 'image',
-                name: 'image',
-                label: 'Icon',
-              },
+              { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+              { type: 'string', name: 'title', label: 'Title' },
               {
                 type: 'string',
-                name: 'patient',
-                label: 'Patient Form Link',
+                name: 'description',
+                label: 'Description',
+                ui: { component: 'textarea' },
               },
+              { type: 'string', name: 'placeName', label: 'Place name' },
+              { type: 'string', name: 'mapPinLabel', label: 'Map pin label' },
+              { type: 'string', name: 'directionsUrl', label: 'Directions URL' },
             ],
           },
           {
             type: 'object',
             name: 'insurance',
-            label: 'Insurance',
+            label: 'Insurance Section',
             fields: [
+              { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+              { type: 'string', name: 'title', label: 'Title' },
               {
-                type: 'image',
-                name: 'images',
-                label: 'Insurance Logos',
+                type: 'string',
+                name: 'description',
+                label: 'Description',
+                ui: { component: 'textarea' },
+              },
+              { type: 'string', name: 'verifyCta', label: 'Verify CTA label' },
+              {
+                type: 'object',
+                name: 'logos',
+                label: 'Logos',
                 list: true,
+                ui: { itemProps: (item) => ({ label: item?.name || 'Logo' }) },
+                fields: [
+                  { type: 'string', name: 'name', label: 'Name' },
+                  { type: 'image', name: 'image', label: 'Logo' },
+                ],
               },
             ],
           },
           {
-            type: 'image',
-            name: 'image2',
-            label: 'Bottom Image',
+            type: 'object',
+            name: 'team',
+            label: 'Team Section Header',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+              { type: 'string', name: 'title', label: 'Title' },
+            ],
+          },
+          {
+            type: 'object',
+            name: 'faq',
+            label: 'FAQ Section',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+              { type: 'string', name: 'title', label: 'Title' },
+              {
+                type: 'object',
+                name: 'items',
+                label: 'Questions',
+                list: true,
+                ui: { itemProps: (item) => ({ label: item?.question || 'Question' }) },
+                fields: [
+                  { type: 'string', name: 'question', label: 'Question' },
+                  {
+                    type: 'string',
+                    name: 'answer',
+                    label: 'Answer',
+                    ui: { component: 'textarea' },
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'object',
+            name: 'contact',
+            label: 'Contact Section',
+            fields: [
+              { type: 'string', name: 'eyebrow', label: 'Eyebrow' },
+              { type: 'string', name: 'title', label: 'Title' },
+              {
+                type: 'string',
+                name: 'description',
+                label: 'Description',
+                ui: { component: 'textarea' },
+              },
+              { type: 'string', name: 'patientForm', label: 'New patient form URL' },
+              { type: 'string', name: 'tollFreePhone', label: 'Toll-free phone (display)' },
+            ],
+          },
+          {
+            type: 'object',
+            name: 'cta',
+            label: 'Bottom CTA Band',
+            fields: [
+              { type: 'string', name: 'titleLine1', label: 'Title line 1' },
+              { type: 'string', name: 'titleLine2', label: 'Title line 2' },
+              { type: 'string', name: 'primaryLabel', label: 'Primary button label' },
+            ],
           },
         ],
       },
@@ -157,19 +259,8 @@ export default defineConfig({
         path: 'content/pages',
         format: 'md',
         fields: [
-          {
-            type: 'string',
-            name: 'title',
-            label: 'Page Title',
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: 'rich-text',
-            name: 'body',
-            label: 'Content',
-            isBody: true,
-          },
+          { type: 'string', name: 'title', label: 'Page Title', isTitle: true, required: true },
+          { type: 'rich-text', name: 'body', label: 'Content', isBody: true },
         ],
       },
       {
@@ -178,42 +269,24 @@ export default defineConfig({
         path: 'content/staff',
         format: 'md',
         fields: [
-          {
-            type: 'string',
-            name: 'title',
-            label: 'Page Title',
-            isTitle: true,
-            required: true,
-          },
+          { type: 'string', name: 'title', label: 'Page Title', isTitle: true, required: true },
           {
             type: 'object',
             name: 'doctors',
             label: 'Doctors',
             list: true,
+            ui: { itemProps: (item) => ({ label: item?.name || 'Doctor' }) },
             fields: [
-              {
-                type: 'string',
-                name: 'name',
-                label: 'Name',
-                required: true,
-              },
-              {
-                type: 'string',
-                name: 'title',
-                label: 'Title',
-              },
-              {
-                type: 'image',
-                name: 'image',
-                label: 'Photo',
-              },
+              { type: 'string', name: 'name', label: 'Name', required: true },
+              { type: 'string', name: 'role', label: 'Role', description: 'e.g. Doctor of Optometry' },
+              { type: 'string', name: 'creds', label: 'Credentials line' },
+              { type: 'string', name: 'titleSuffix', label: 'Title suffix (legacy)' },
+              { type: 'image', name: 'image', label: 'Photo' },
               {
                 type: 'string',
                 name: 'bio',
                 label: 'Biography',
-                ui: {
-                  component: 'textarea',
-                },
+                ui: { component: 'textarea' },
               },
             ],
           },
@@ -222,23 +295,11 @@ export default defineConfig({
             name: 'staff',
             label: 'Staff Members',
             list: true,
+            ui: { itemProps: (item) => ({ label: item?.name || 'Staff' }) },
             fields: [
-              {
-                type: 'string',
-                name: 'name',
-                label: 'Name',
-                required: true,
-              },
-              {
-                type: 'string',
-                name: 'title',
-                label: 'Title',
-              },
-              {
-                type: 'image',
-                name: 'image',
-                label: 'Photo',
-              },
+              { type: 'string', name: 'name', label: 'Name', required: true },
+              { type: 'string', name: 'title', label: 'Role' },
+              { type: 'image', name: 'image', label: 'Photo' },
             ],
           },
         ],
@@ -249,81 +310,37 @@ export default defineConfig({
         path: 'content/settings',
         format: 'md',
         fields: [
-          {
-            type: 'string',
-            name: 'title',
-            label: 'Title',
-            isTitle: true,
-            required: true,
-          },
+          { type: 'string', name: 'title', label: 'Title', isTitle: true, required: true },
           {
             type: 'object',
             name: 'settings',
             label: 'Settings',
             fields: [
-              {
-                type: 'string',
-                name: 'phone',
-                label: 'Phone',
-              },
-              {
-                type: 'string',
-                name: 'fax',
-                label: 'Fax',
-              },
-              {
-                type: 'string',
-                name: 'email',
-                label: 'Email',
-              },
+              { type: 'string', name: 'brandName', label: 'Brand name' },
+              { type: 'string', name: 'brandTagline', label: 'Brand tagline' },
+              { type: 'string', name: 'phone', label: 'Phone' },
+              { type: 'string', name: 'phoneDisplay', label: 'Phone (formatted display)' },
+              { type: 'string', name: 'fax', label: 'Fax' },
+              { type: 'string', name: 'faxDisplay', label: 'Fax (formatted display)' },
+              { type: 'string', name: 'email', label: 'Email' },
               {
                 type: 'string',
                 name: 'address',
                 label: 'Address',
-                ui: {
-                  component: 'textarea',
-                },
+                ui: { component: 'textarea' },
               },
-              {
-                type: 'string',
-                name: 'bookingUrl',
-                label: 'Booking URL',
-              },
-              {
-                type: 'string',
-                name: 'monday',
-                label: 'Monday Hours',
-              },
-              {
-                type: 'string',
-                name: 'tuesday',
-                label: 'Tuesday Hours',
-              },
-              {
-                type: 'string',
-                name: 'wednesday',
-                label: 'Wednesday Hours',
-              },
-              {
-                type: 'string',
-                name: 'thursday',
-                label: 'Thursday Hours',
-              },
-              {
-                type: 'string',
-                name: 'friday',
-                label: 'Friday Hours',
-              },
-              {
-                type: 'string',
-                name: 'saturday',
-                label: 'Saturday Hours',
-              },
-              {
-                type: 'string',
-                name: 'sunday',
-                label: 'Sunday Hours',
-              },
+              { type: 'string', name: 'addressLine1', label: 'Address line 1' },
+              { type: 'string', name: 'addressLine2', label: 'Address line 2' },
+              { type: 'string', name: 'bookingUrl', label: 'Booking URL' },
+              { type: 'string', name: 'monday', label: 'Monday Hours' },
+              { type: 'string', name: 'tuesday', label: 'Tuesday Hours' },
+              { type: 'string', name: 'wednesday', label: 'Wednesday Hours' },
+              { type: 'string', name: 'thursday', label: 'Thursday Hours' },
+              { type: 'string', name: 'friday', label: 'Friday Hours' },
+              { type: 'string', name: 'saturday', label: 'Saturday Hours' },
+              { type: 'string', name: 'sunday', label: 'Sunday Hours' },
+              { type: 'string', name: 'footerBlurb', label: 'Footer blurb', ui: { component: 'textarea' } },
+              { type: 'string', name: 'footerDisclaimer', label: 'Footer disclaimer', ui: { component: 'textarea' } },
             ],
           },
         ],
@@ -331,4 +348,3 @@ export default defineConfig({
     ],
   },
 })
-

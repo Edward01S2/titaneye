@@ -16,7 +16,7 @@ Before deploying, you need to configure Resend:
 
 #### Step 2: Add Your Domain (Recommended)
 1. In Resend dashboard, go to **Domains**
-2. Add your domain: `taeyecare.com`
+2. Add your domain: `titaneye.care`
 3. Add the DNS records they provide to your domain registrar
 4. Wait for verification (usually 5-10 minutes)
 
@@ -25,10 +25,10 @@ Once your domain is verified, update `src/app/api/contact/route.ts`:
 
 ```typescript
 // Change line 15 from:
-from: 'Ta Eye Associates <onboarding@resend.dev>',
+from: 'Titan Eye Care <onboarding@resend.dev>',
 
 // To:
-from: 'Ta Eye Associates <noreply@taeyecare.com>',
+from: 'Titan Eye Care <form@titaneye.care>',
 ```
 
 **Note:** If you skip domain verification, emails will work but show `via resend.dev` which looks less professional.
@@ -56,7 +56,7 @@ git push origin master
 ### Step 1: Connect to Vercel
 1. Go to [vercel.com](https://vercel.com) and sign in with GitHub
 2. Click **"Add New Project"**
-3. Import your `taeye` repository
+3. Import your `titan-eye-care` repository
 4. Vercel will auto-detect Next.js
 
 ### Step 2: Configure Environment Variables
@@ -75,7 +75,7 @@ Before clicking "Deploy", add environment variables:
 
 ### Step 4: Add Custom Domain
 1. In Vercel project settings, go to **Domains**
-2. Add `taeyecare.com` and `www.taeyecare.com`
+2. Add `titaneye.care` and `www.titaneye.care`
 3. Update your DNS records as instructed by Vercel
 4. SSL certificate will be auto-generated
 
@@ -98,7 +98,7 @@ Tina Cloud will provide:
 2. Add both variables
 3. Redeploy your site
 
-Now you can access the CMS at `https://taeyecare.com/admin` in production!
+Now you can access the CMS at `https://www.titaneye.care/admin` in production!
 
 ## 🔍 Verifying Deployment
 
@@ -108,7 +108,7 @@ After deployment, test:
 - ✅ All images display properly
 - ✅ Navigation works (scroll to sections)
 - ✅ Contact form submits successfully
-- ✅ You receive email at office@taeyecare.com
+- ✅ You receive email at office@titaneye.care
 - ✅ Custom font displays correctly
 
 ## 🐛 Troubleshooting
